@@ -1,3 +1,5 @@
+import numpy as np
+
 def compute_section_properties(sections, point_of_interest=None):
 
     layers = []
