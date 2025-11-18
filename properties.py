@@ -157,5 +157,12 @@ def local_buckling(t, b, k, mu=0.2, E=4000):
     critical_stress = beta * k * (t/b)**2
     return critical_stress
 
+def shear_buckling(t, b, a, k=5, mu=0.2, E=4000):
+    beta = np.pi**2 * E / (12 * (1 - mu**2))
+    critical_shear = beta * k * ((t/b)**2 + (t/a)**2)
+    return critical_shear
+    
+
 print(compute_section_properties([(125, 300), (800, 100)], point_of_interest=286))
-print(local_buckling(1.27,18.75,0.425))
+print(local_buckling(2.54,50,0.425))
+print(shear_buckling(1.27, 200, 90))
