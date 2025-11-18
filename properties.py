@@ -163,6 +163,6 @@ def shear_buckling(t, b, a, k=5, mu=0.2, E=4000):
     return critical_shear
     
 
-print(compute_section_properties([(125, 300), (800, 100)], point_of_interest=286))
-print(local_buckling(2.54,50,0.425))
-print(shear_buckling(1.27, 200, 90))
+# print(compute_section_properties([(125, 300), (800, 100)], point_of_interest=286))
+# print(local_buckling(2.54,50,0.425))
+# print(shear_buckling(1.27, 200, 90))

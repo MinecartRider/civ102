@@ -15,13 +15,13 @@ def Design2_I(w,h):
     return Rect_I(centroid,height,b,local_centroids)
 
 def flexural_tens(I,centroid):
-    flex_tens_stress=(85910*centroid/I)
+    flex_tens_stress=(54304*centroid/I)
     print("Flexural Tensile Stress: " + str(flex_tens_stress))
     FOS=30/flex_tens_stress
     print("FOS(Flexural Tension) = "+str(FOS))
 
 def flexural_comp(I,centroid, y_max):
-    flex_comp_stress=(85910*(y_max-centroid))/I
+    flex_comp_stress=(54304*(y_max-centroid))/I
     print("Flexural Compressive Stress: " + str(flex_comp_stress))
     FOS=6/flex_comp_stress
     print("FOS(Flexural Compression) = "+str(FOS))
@@ -57,11 +57,13 @@ def glue_shear(Q,I,b):
     print("FOS(Shear (glue)) = " + str(FOS))
 
 if __name__=="__main__":
-    print(Rect_I(55.8, [78.73,78.73,1.27,1.27,1.27],[1.27,1.27,5,5,100],[39.4,39.4,78.1,78.1,79.4]))
-    print(Design2_centroid(100,77.46))
-    print(Design2_I(100,77.46))
-    flexural_tens(279000,61.7)
-    flexural_comp(279000,61.7,80)
-    shear(Design2_Q_centroid(100,77.46),279000, 2.54)
-    glue_shear(Design2_Q_glue_top(100,77.46),279000, 100)
-    glue_shear(Design2_Q_glue_middle(100,77.46),279000, 10)
+    # print(Rect_I(55.8, [78.73,78.73,1.27,1.27,1.27],[1.27,1.27,5,5,100],[39.4,39.4,78.1,78.1,79.4]))
+    # print(Design2_centroid(100,77.46))
+    # print(Design2_I(100,77.46))
+    # flexural_tens(279000,61.7)
+    # flexural_comp(279000,61.7,80)
+    # shear(Design2_Q_centroid(100,77.46),279000, 2.54)
+    # glue_shear(Design2_Q_glue_top(100,77.46),279000, 100)
+    # glue_shear(Design2_Q_glue_middle(100,77.46),279000, 10)
+    print(flexural_comp(521000,74.62,100))
+    print(flexural_tens(521000,74.62))
