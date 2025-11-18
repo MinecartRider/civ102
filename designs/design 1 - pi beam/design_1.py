@@ -1,5 +1,5 @@
-import properties as pr
-import cross_section as cs
+import helpers.properties as pr
+import helpers.cross_section as cs
 
 
 def shear_calculation(V, Q, I, b):
