@@ -65,5 +65,5 @@ if __name__=="__main__":
     # shear(Design2_Q_centroid(100,77.46),279000, 2.54)
     # glue_shear(Design2_Q_glue_top(100,77.46),279000, 100)
     # glue_shear(Design2_Q_glue_middle(100,77.46),279000, 10)
-    print(flexural_comp(521000,74.62,100))
-    print(flexural_tens(521000,74.62))
+    print(flexural_comp(2105000,150.23,200))
+    print(flexural_tens(2105000,150.23))
