@@ -14,14 +14,14 @@ def Design2_I(w,h):
     local_centroids=[h/2,h/2,h-0.635,h-0.635,h+1.27]
     return Rect_I(centroid,height,b,local_centroids)
 
-def flexural_tens(I,centroid):
-    flex_tens_stress=(83910*centroid/I)
+def flexural_tens(I,centroid,M_max=85910):
+    flex_tens_stress=(M_max*centroid/I)
     print("Flexural Tensile Stress: " + str(flex_tens_stress))
     FOS=30/flex_tens_stress
     print("FOS(Flexural Tension) = "+str(FOS))
 
-def flexural_comp(I,centroid, y_max):
-    flex_comp_stress=(83910*(y_max-centroid))/I
+def flexural_comp(I,centroid, y_max, M_max=85910):
+    flex_comp_stress=(M_max*(y_max-centroid))/I
     print("Flexural Compressive Stress: " + str(flex_comp_stress))
     FOS=6/flex_comp_stress
     print("FOS(Flexural Compression) = "+str(FOS))
