@@ -36,9 +36,9 @@ def find_shear(shear_forces, max_length):
     current_shear = 0
     shear = {}
     for i in range(max_length):
-        shear[i] = current_shear
         if i in shear_forces:
             current_shear += shear_forces[i]
+        shear[i] = current_shear
     return shear
     
 def find_moment(shear_forces, max_length):
@@ -57,22 +57,22 @@ def calculate_at_train_position(func, x, total_load, load_position, reaction_loc
     loads = find_loads(x, load_mag, load_position, max_length)
     reactions = find_reaction(loads, reaction_locations)
     shear = {k: loads.get(k, 0) + reactions.get(k, 0) for k in set(loads) | set(reactions)}
-    print(loads)
     data = func(shear, max_length)
     return data
     
 
-def envelope(func, total_load, load_position, reaction_locations, max_length):
+def envelope(func, total_load, load_position, reaction_locations, max_length, train_length):
     load_mag = get_loads(total_load)
     maximum = {}
     x_at_max = {}
     minimum = {}
     x_at_min = {}
-    for x in range(max_length):
-        loads = find_loads(x, load_mag, load_position, max_length)
-        reactions = find_reaction(loads, reaction_locations)
-        shear = {k: loads.get(k, 0) + reactions.get(k, 0) for k in set(loads) | set(reactions)}
-        data_at_pos = func(shear, max_length)
+    for x in range((max_length + train_length)):
+        # loads = find_loads(x, load_mag, load_position, max_length)
+        # reactions = find_reaction(loads, reaction_locations)
+        # shear = {k: loads.get(k, 0) + reactions.get(k, 0) for k in set(loads) | set(reactions)}
+        # data_at_pos = func(shear, max_length)
+        data_at_pos = calculate_at_train_position(func, x, total_load, load_position, reaction_locations, max_length)
         for pos in data_at_pos:
             if pos not in maximum:
                 maximum[pos] = data_at_pos[pos]
@@ -87,10 +87,10 @@ def envelope(func, total_load, load_position, reaction_locations, max_length):
                 x_at_min[pos] = x
     return maximum, x_at_max, minimum, x_at_min
 
-def plot_all_load_cases(func, total_load, load_position, reaction_locations, max_length, xlabel, ylabel, filename):
+def plot_all_load_cases(func, total_load, load_position, reaction_locations, max_length, train_length, xlabel, ylabel, filename):
     data = []
     load_mag = get_loads(total_load)
-    for x in range(max_length):
+    for x in range(max_length + train_length):
         loads = find_loads(x, load_mag, load_position, max_length)
         reactions = find_reaction(loads, reaction_locations)
         shear = {k: loads.get(k, 0) + reactions.get(k, 0) for k in set(loads) | set(reactions)}
