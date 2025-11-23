@@ -62,13 +62,13 @@ def calculate_at_train_position(func, x, total_load, load_position, reaction_loc
     return data
     
 
-def envelope(func, total_load, load_position, reaction_locations, max_length):
-    load_mag = get_loads(total_load)
+def envelope(func, load, load_position, reaction_locations, max_length, train_length=0):
+    load_mag = load
     maximum = {}
     x_at_max = {}
     minimum = {}
     x_at_min = {}
-    for x in range(max_length):
+    for x in range(max_length + train_length):
         loads = find_loads(x, load_mag, load_position, max_length)
         reactions = find_reaction(loads, reaction_locations)
         shear = {k: loads.get(k, 0) + reactions.get(k, 0) for k in set(loads) | set(reactions)}
@@ -87,7 +87,7 @@ def envelope(func, total_load, load_position, reaction_locations, max_length):
                 x_at_min[pos] = x
     return maximum, x_at_max, minimum, x_at_min
 
-def plot_all_load_cases(func, total_load, load_position, reaction_locations, max_length, xlabel, ylabel, filename):
+def plot_all_load_cases(func, total_load, load_position, reaction_locations, max_length, train_length=0, xlabel="", ylabel="", filename="file.png"):
     data = []
     load_mag = get_loads(total_load)
     for x in range(max_length):
