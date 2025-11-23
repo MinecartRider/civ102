@@ -86,9 +86,9 @@ def envelope(func, load, load_position, reaction_locations, max_length, train_le
                 x_at_min[pos] = x
     return maximum, x_at_max, minimum, x_at_min
 
-def plot_all_load_cases(func, total_load, load_position, reaction_locations, max_length, train_length=0, xlabel="", ylabel="", filename="file.png"):
+def plot_all_load_cases(func, load, load_position, reaction_locations, max_length, train_length=0, xlabel="", ylabel="", filename="file.png"):
     data = []
-    load_mag = get_loads(total_load)
+    load_mag = load
     for x in range(max_length + train_length):
         loads = find_loads(x, load_mag, load_position, max_length)
         reactions = find_reaction(loads, reaction_locations)
