@@ -3,9 +3,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def get_loads(total_load):
-    normal_load = total_load/6.7
-    heavy_load = normal_load*1.35
-    P = [heavy_load, heavy_load, normal_load, normal_load, normal_load, normal_load]
+    normal_load = total_load/7.236
+    heavy_load = normal_load*1.1
+    locomotive_load = heavy_load*1.38
+    P = [locomotive_load, locomotive_load, normal_load, normal_load, heavy_load, heavy_load]
     return P
 
 # Takes in x (the position of the front of the car), P (an array that represents the magnitude of the loads)
