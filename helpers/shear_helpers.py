@@ -36,9 +36,9 @@ def find_shear(shear_forces, max_length):
     current_shear = 0
     shear = {}
     for i in range(max_length):
-        shear[i] = current_shear
         if i in shear_forces:
             current_shear += shear_forces[i]
+        shear[i] = current_shear
     return shear
     
 def find_moment(shear_forces, max_length):
@@ -57,7 +57,6 @@ def calculate_at_train_position(func, x, total_load, load_position, reaction_loc
     loads = find_loads(x, load_mag, load_position, max_length)
     reactions = find_reaction(loads, reaction_locations)
     shear = {k: loads.get(k, 0) + reactions.get(k, 0) for k in set(loads) | set(reactions)}
-    print(loads)
     data = func(shear, max_length)
     return data
     
@@ -90,7 +89,7 @@ def envelope(func, load, load_position, reaction_locations, max_length, train_le
 def plot_all_load_cases(func, total_load, load_position, reaction_locations, max_length, train_length=0, xlabel="", ylabel="", filename="file.png"):
     data = []
     load_mag = get_loads(total_load)
-    for x in range(max_length):
+    for x in range(max_length + train_length):
         loads = find_loads(x, load_mag, load_position, max_length)
         reactions = find_reaction(loads, reaction_locations)
         shear = {k: loads.get(k, 0) + reactions.get(k, 0) for k in set(loads) | set(reactions)}
