@@ -161,6 +161,9 @@ def shear_buckling(t, b, a, k=5, mu=0.2, E=4000):
     beta = np.pi**2 * E / (12 * (1 - mu**2))
     critical_shear = beta * k * ((t/b)**2 + (t/a)**2)
     return critical_shear
+
+def calculate_fos(sigma_applied, sigma_critical):
+    return sigma_critical / sigma_applied
     
 
 # print(compute_section_properties([(125, 300), (800, 100)], point_of_interest=286))

@@ -19,12 +19,14 @@ def flexural_tens(I,centroid,M_max=85910):
     print("Flexural Tensile Stress: " + str(flex_tens_stress))
     FOS=30/flex_tens_stress
     print("FOS(Flexural Tension) = "+str(FOS))
+    return flex_tens_stress
 
 def flexural_comp(I,centroid, y_max, M_max=85910):
     flex_comp_stress=(M_max*(y_max-centroid))/I
     print("Flexural Compressive Stress: " + str(flex_comp_stress))
     FOS=6/flex_comp_stress
     print("FOS(Flexural Compression) = "+str(FOS))
+    return flex_comp_stress
 
 def Design2_Q_centroid(w,h):
     centroid = Design2_centroid(w, h)
